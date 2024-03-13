@@ -1,2 +1,3 @@
 npm run circdepcheck
-npm run test
+npm run testnpm
+npm run build
