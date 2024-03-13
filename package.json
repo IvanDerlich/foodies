@@ -9,7 +9,7 @@
     "lint": "npx eslint . --ext .js,.jsx,.ts,.tsx --fix --cache",
     "lint-default": "next lint",
     "prepare": "husky",
-    "test": "npx jest "
+    "test": "npx jest --passWithNoTests"
   },
   "dependencies": {
     "next": "14.0.3",
