@@ -10,7 +10,7 @@
     "lint-default": "next lint",
     "prepare": "husky",
     "test": "npx jest --passWithNoTests",
-    "cirdepcheck": "madge --circular --extensions ts,tsx ."
+    "circdepcheck": "madge --circular --extensions ts,tsx ."
   },
   "dependencies": {
     "next": "14.0.3",
