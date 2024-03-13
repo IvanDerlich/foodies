@@ -1,5 +1,6 @@
 #!/usr/bin/env sh
+set -e
 
-npm run circdepcheck && \
-npm run test && \
+npm run circdepcheck
+npm run test
 npm run build

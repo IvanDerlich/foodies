@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "npx eslint . --ext .js,.jsx,.ts,.tsx --fix --cache",
+    "lint": "npx eslint . --ext .js, .jsx,.ts,.tsx --fix --cache",
     "lint-default": "next lint",
     "prepare": "husky",
     "test": "npx jest --passWithNoTests",
