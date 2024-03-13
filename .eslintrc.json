@@ -1,6 +1,18 @@
 {
-  "extends": "next/core-web-vitals",
+  "extends": ["airbnb", "plugin:prettier/recommended"],
+  "settings": {
+    "import/resolver": {
+      "alias": {
+        "extensions": [".js", ".jsx", ".ts", ".tsx"],
+        "map": [["@", "./"]]
+      }
+    }
+  },
   "rules": {
-    "@next/next/no-img-element": "off"
+    "react/react-in-jsx-scope": "off",
+    "react/jsx-filename-extension": "off",
+    "import/extensions": "off",
+    "react/prop-types": "off",
+    "allowImportingTsExtensions": "off"
   }
 }
