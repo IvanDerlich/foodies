@@ -1,3 +1,1 @@
-npm run circdepcheck
-npm run testnpm
-npm run build
+npm run circdepcheck && npm run test && npm run build
