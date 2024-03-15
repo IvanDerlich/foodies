@@ -6,7 +6,7 @@ function MainHeader() {
   return (
     <header>
       <Link href="/">
-        Next Level Food
+        Next Level Food.
         <Image src={logo.src} alt="Home Logo" width="50" height="50" />
       </Link>
       <nav>
