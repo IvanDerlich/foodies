@@ -1,5 +1,9 @@
 {
-  "extends": ["airbnb", "plugin:prettier/recommended"],
+  "extends": [
+    "airbnb",
+    "plugin:prettier/recommended",
+    "plugin:@next/next/recommended"
+  ],
   "settings": {
     "import/resolver": {
       "alias": {
