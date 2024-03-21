@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react'
 
 function MealsLayout({ children }) {
   return (
@@ -6,7 +6,7 @@ function MealsLayout({ children }) {
       <p>MealsLayout</p>
       {children}
     </>
-  );
+  )
 }
 
-export default MealsLayout;
+export default MealsLayout
