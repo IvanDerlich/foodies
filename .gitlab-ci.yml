@@ -3,6 +3,7 @@ stages:
   - lint
   - madge
   - test
+  - build
 
 cache:
   key: ${CI_COMMIT_REF_SLUG}
@@ -42,5 +43,14 @@ madge_job:
   script:
     - echo "Checking circular dependencies. Running madge..."
     - npm run madge
+  only:
+    - merge_requests
+
+build_job:
+  stage: build
+  image: node:latest
+  script:
+    - echo "Building..."
+    - npm run build
   only:
     - merge_requests
