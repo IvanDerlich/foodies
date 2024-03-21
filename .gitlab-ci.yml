@@ -1,6 +1,6 @@
 stages:
   - setup
-  - lint
+  - lintAndFormat
   - madge
   - test
   - build
@@ -19,12 +19,14 @@ setup_dependencies:
   only:
     - merge_requests
 
-lint_job:
-  stage: lint
+lintAndFormat_job:
+  stage: lintAndFormat
   image: node:latest
   script:
     - echo "Running linting..."
     - npm run lint
+    - echo "Running formatting..."
+    - npm run format
   only:
     - merge_requests
 
