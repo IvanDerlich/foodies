@@ -3,6 +3,7 @@ import Image from 'next/image'
 import logo from '@/assets/logo.png'
 import styles from './classes.module.css'
 import Background from './background'
+import NavLink from './navlink'
 
 function MainHeader() {
   return (
@@ -13,8 +14,8 @@ function MainHeader() {
         Next Level Food
       </Link>
       <nav className={styles.nav}>
-        <Link href="/meals">Browse Meals</Link>
-        <Link href="/community">Community</Link>
+        <NavLink href="/meals">Meals</NavLink>
+        <NavLink href="/community">Community</NavLink>
       </nav>
     </header>
   )
