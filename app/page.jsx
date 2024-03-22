@@ -1,7 +1,7 @@
 /* eslint-disable react/self-closing-comp */
 import React from 'react'
 import Link from 'next/link'
-import ImageSlideshow from '@/components/images/slideshow'
+import ImageSlideshow from '@/components/Images/slideshow'
 import classes from './page.module.css'
 
 export default function Home() {
