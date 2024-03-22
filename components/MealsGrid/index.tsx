@@ -1,13 +1,19 @@
 import React from 'react'
 import classes from './styles.module.css'
-import MealItem from '../Item'
+import MealItem from './Item'
 
 function MealsGrid({ meals }) {
   return (
     <ul className={classes.meals}>
       {meals.map((meal) => (
         <li key={meal.id}>
-          <MealItem {...meal} />
+          <MealItem
+            title={meal.title}
+            slug={meal.slug}
+            image={meal.image}
+            summary={meal.summary}
+            creator={meal.creator}
+          />
         </li>
       ))}
     </ul>
