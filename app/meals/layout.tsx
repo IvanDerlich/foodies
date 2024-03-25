@@ -1,5 +1,6 @@
 function MealsLayout({ children }) {
-  return { children }
+  console.log('MealsLayout', children)
+  return <> children </>
 }
 
 export default MealsLayout
