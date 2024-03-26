@@ -1,8 +1,9 @@
+import { getMeals } from '@/dbaccess/meals'
 import React from 'react'
 import Link from 'next/link'
+
 import MealsGrid from '@/components/MealsGrid'
 import classes from './page.module.css'
-import { getMeals } from '@/dbaccess/meals'
 
 async function MealsPage() {
   const meals = await getMeals()
