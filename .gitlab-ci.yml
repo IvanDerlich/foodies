@@ -4,6 +4,7 @@ stages:
   - madge
   - test
   - build
+  - database
 
 cache:
   key: ${CI_COMMIT_REF_SLUG}
@@ -49,10 +50,21 @@ madge_job:
     - merge_requests
 
 build_job:
-  stage: build
+  stage: database
   image: node:latest
   script:
     - echo "Building..."
     - npm run build
+  only:
+    - merge_requests
+
+database_job:
+  stage: build
+  image: node:latest
+  script:
+    - echo "Deleting previous database..."
+    - rm meals.db
+    - echo "Creating new database..."
+    - node initdb.ts
   only:
     - merge_requests
