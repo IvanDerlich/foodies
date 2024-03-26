@@ -17,8 +17,6 @@ setup_dependencies:
     - echo "Installing dependencies..."
     - npm install
     - ls -a
-    - echo "Deleting previous database..."
-    - rm meals.db
     - echo "Creating new database..."
     - node initdb.ts
     - ls -a
