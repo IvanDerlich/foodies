@@ -4,7 +4,6 @@ stages:
   - madge
   - test
   - build
-  - database
 
 cache:
   key: ${CI_COMMIT_REF_SLUG}
@@ -17,6 +16,10 @@ setup_dependencies:
   script:
     - echo "Installing dependencies..."
     - npm install
+    - echo "Deleting previous database..."
+    - rm meals.db
+    - echo "Creating new database..."
+    - node initdb.ts
   only:
     - merge_requests
 
@@ -55,16 +58,5 @@ build_job:
   script:
     - echo "Building..."
     - npm run build
-  only:
-    - merge_requests
-
-database_job:
-  stage: build
-  image: node:latest
-  script:
-    - echo "Deleting previous database..."
-    - rm meals.db
-    - echo "Creating new database..."
-    - node initdb.ts
   only:
     - merge_requests
