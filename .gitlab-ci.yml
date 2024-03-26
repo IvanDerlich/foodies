@@ -53,7 +53,7 @@ madge_job:
     - merge_requests
 
 build_job:
-  stage: database
+  stage: build
   image: node:latest
   script:
     - echo "Building..."
