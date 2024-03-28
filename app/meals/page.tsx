@@ -1,12 +1,16 @@
 import { getMeals } from '@/dbaccess/meals'
-import React from 'react'
+import { Suspense } from 'react'
 import Link from 'next/link'
 
 import MealsGrid from '@/components/MealsGrid'
 import classes from './page.module.css'
 
-async function MealsPage() {
+async function Meals() {
   const meals = await getMeals()
+  return <MealsGrid meals={meals} />
+}
+
+function MealsPage() {
   return (
     <>
       <header className={classes.header}>
@@ -23,7 +27,9 @@ async function MealsPage() {
         </p>
       </header>
       <main className={classes.main}>
-        <MealsGrid meals={meals} />
+        <Suspense fallback={<div className={classes.loading}>Loading...</div>}>
+          <Meals />
+        </Suspense>
       </main>
     </>
   )
