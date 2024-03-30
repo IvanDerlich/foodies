@@ -1,5 +1,4 @@
 {
-  "type": "module",
   "name": "foodies",
   "version": "0.1.0",
   "private": true,
@@ -38,8 +37,6 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "husky": "^9.0.11",
     "madge": "^6.1.0",
-    "prettier": "^3.2.5",
-    "ts-node": "^10.9.2",
-    "typescript": "^5.4.3"
+    "prettier": "^3.2.5"
   }
 }
