@@ -1,6 +1,6 @@
-import classes from './page.module.css'
 import Image from 'next/image'
 import { getMeal } from '@/dbaccess/meals'
+import classes from './page.module.css'
 
 type Meal = {
   title: string
@@ -34,7 +34,7 @@ function MealDetals({ params: { mealSlug } }) {
         <p
           className={classes.instructions}
           dangerouslySetInnerHTML={{ __html: meal.instructions }}
-        ></p>
+        />
       </main>
     </>
   )
