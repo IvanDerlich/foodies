@@ -1,6 +1,18 @@
-import sql from 'better-sqlite3'
+/* eslint-disable @typescript-eslint/no-var-requires */
+/* eslint-disable prettier/prettier */
+const fs = require('fs')
+const sql = require('better-sqlite3')
 
-const db = sql('meals.db')
+// Path to the database file
+const dbPath = 'meals.db'
+
+// Check if the database file exists and delete it if it does
+if (fs.existsSync(dbPath)) {
+  fs.unlinkSync(dbPath)
+}
+
+// Initialize the database connection
+const db = sql(dbPath)
 
 const dummyMeals = [
   {
