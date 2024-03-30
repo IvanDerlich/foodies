@@ -16,7 +16,7 @@ setup_dependencies:
   image: node:latest
   script:
     - echo "Installing dependencies..."
-    - npm installj
+    - npm install
   only:
     - merge_requests
 
