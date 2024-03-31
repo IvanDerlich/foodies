@@ -4,6 +4,7 @@ import classes from './page.module.css'
 import type { Meal } from '../types/meal'
 
 async function MealDetals({ params: { mealSlug } }) {
+  console.log('Accessing database with this mealSlug: ', mealSlug)
   const meal: Meal = await getMeal(mealSlug)
   meal.instructions = meal.instructions.replace(/\n/g, '<br>')
   return (
