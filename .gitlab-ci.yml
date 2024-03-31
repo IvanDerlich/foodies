@@ -24,12 +24,12 @@ pipeline_job:
     - npm run build
   only:
     - merge_requests
-# cache:
-#   key: ${CI_COMMIT_REF_SLUG}
-#   paths:
-#     - node_modules/
-#     - meals.db
 
+cache:
+  key: ${CI_COMMIT_REF_SLUG}
+  paths:
+    - node_modules/
+    # - meals.db
 # setup_dependencies_job:
 #   stage: setup
 #   image: node:latest
