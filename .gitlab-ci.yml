@@ -1,59 +1,78 @@
 stages:
-  - setup
-  - lintAndFormat
-  - madge
-  - test
-  - build
+  - pipeline
+  # - setup
+  # - lintAndFormat
+  # - madge
+  # - test
+  # - build
 
-cache:
-  key: ${CI_COMMIT_REF_SLUG}
-  paths:
-    - node_modules/
-    - meals.db
-
-setup_dependencies:
-  stage: setup
+pipeline_job:
+  stage: pipeline
   image: node:latest
   script:
     - echo "Installing dependencies..."
     - npm install
-  only:
-    - merge_requests
-
-lintAndFormat_job:
-  stage: lintAndFormat
-  image: node:latest
-  script:
-    - echo "Running linting..."
-    - npm run lint
     - echo "Running formatting..."
     - npm run format
-  only:
-    - merge_requests
-
-test_job:
-  stage: test
-  image: node:latest
-  script:
-    - echo "Running tests..."
-    - npm test
-  only:
-    - merge_requests
-
-madge_job:
-  stage: madge
-  image: node:latest
-  script:
+    - echo "Running linting..."
+    - npm run lint
     - echo "Checking circular dependencies. Running madge..."
     - npm run madge
-  only:
-    - merge_requests
-
-build_job:
-  stage: build
-  image: node:latest
-  script:
+    - echo "Running tests..."
+    - npm test
     - echo "Building..."
     - npm run build
   only:
     - merge_requests
+# cache:
+#   key: ${CI_COMMIT_REF_SLUG}
+#   paths:
+#     - node_modules/
+#     - meals.db
+
+# setup_dependencies_job:
+#   stage: setup
+#   image: node:latest
+#   script:
+#     - echo "Installing dependencies..."
+#     - npm install
+#   only:
+#     - merge_requests
+
+# lintAndFormat_job:
+#   stage: lintAndFormat
+#   image: node:latest
+#   script:
+#     - echo "Running linting..."
+#     - npm run lint
+#     - echo "Running formatting..."
+#     - npm run format
+#   only:
+#     - merge_requests
+
+# test_job:
+#   stage: test
+#   image: node:latest
+#   script:
+#     - echo "Running tests..."
+#     - npm test
+#   only:
+#     - merge_requests
+
+# madge_job:
+#   stage: madge
+#   image: node:latest
+#   script:
+#     - echo "Checking circular dependencies. Running madge..."
+#     - npm run madge
+#   only:
+#     - merge_requests
+
+# build_job:
+#   stage: build
+#   image: node:latest
+#   script:
+#     - echo "Building..."
+#     - npm run build
+#   only:
+#     - merge_requests
