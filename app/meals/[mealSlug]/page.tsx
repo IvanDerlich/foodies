@@ -1,20 +1,10 @@
 import Image from 'next/image'
 import { getMeal } from '@/dbaccess/meals'
 import classes from './page.module.css'
+import type { Meal } from '../types/meal'
 
-type Meal = {
-  title: string
-  image: string
-  creator_email: string
-  slug: string
-  summary: string
-  instructions: string
-  creator: string
-}
-
-// eslint-disable-next-line no-unused-vars
-function MealDetals({ params: { mealSlug } }) {
-  const meal: Meal = getMeal(mealSlug)
+async function MealDetals({ params: { mealSlug } }) {
+  const meal: Meal = await getMeal(mealSlug)
   meal.instructions = meal.instructions.replace(/\n/g, '<br>')
   return (
     <>
@@ -33,8 +23,11 @@ function MealDetals({ params: { mealSlug } }) {
       <main className="">
         <p
           className={classes.instructions}
+          // eslint-disable-next-line react/no-danger
           dangerouslySetInnerHTML={{ __html: meal.instructions }}
-        />
+        >
+          {meal.instructions}
+        </p>
       </main>
     </>
   )

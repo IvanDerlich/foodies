@@ -4,9 +4,10 @@ import Link from 'next/link'
 
 import MealsGrid from '@/components/MealsGrid'
 import classes from './page.module.css'
+import type { Meal } from './types/meal'
 
 async function Meals() {
-  const meals = await getMeals()
+  const meals: Meal[] = await getMeals()
   return <MealsGrid meals={meals} />
 }
 
