@@ -1,10 +1,14 @@
 import Image from 'next/image'
 import { getMeal } from '@/db/actions'
+import { notFound } from 'next/navigation'
 import classes from './page.module.css'
 import type { Meal } from '../types/meal'
 
 async function MealDetals({ params: { mealSlug } }) {
   const meal: Meal = await getMeal(mealSlug)
+  if (!meal) {
+    notFound()
+  }
   meal.instructions = meal.instructions.replace(/\n/g, '<br>')
   return (
     <>
