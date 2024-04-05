@@ -1,20 +1,4 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
-/* eslint-disable prettier/prettier */
-const fs = require('fs')
-const sql = require('better-sqlite3')
-
-// Path to the database file
-const dbPath = 'meals.db'
-
-// Check if the database file exists and delete it if it does
-if (fs.existsSync(dbPath)) {
-  fs.unlinkSync(dbPath)
-}
-
-// Initialize the database connection
-const db = sql(dbPath)
-
-const dummyMeals = [
+export default [
   {
     title: 'Juicy Cheese Burger',
     slug: 'juicy-cheese-burger',
@@ -177,38 +161,4 @@ const dummyMeals = [
   },
 ]
 
-db.prepare(
-  `
-   CREATE TABLE IF NOT EXISTS meals (
-       id INTEGER PRIMARY KEY AUTOINCREMENT,
-       slug TEXT NOT NULL UNIQUE,
-       title TEXT NOT NULL,
-       image TEXT NOT NULL,
-       summary TEXT NOT NULL,
-       instructions TEXT NOT NULL,
-       creator TEXT NOT NULL,
-       creator_email TEXT NOT NULL
-    )
-`
-).run()
-
-async function initData() {
-  const stmt = db.prepare(`
-      INSERT INTO meals VALUES (
-         null,
-         @slug,
-         @title,
-         @image,
-         @summary,
-         @instructions,
-         @creator,
-         @creator_email
-      )
-   `)
-
-  dummyMeals.forEach((meal) => {
-    stmt.run(meal)
-  })
-}
-
-initData()
+// module.exports = dummyMeals

@@ -1,10 +1,9 @@
 import Image from 'next/image'
-import { getMeal } from '@/dbaccess/meals'
+import { getMeal } from '@/db/actions'
 import classes from './page.module.css'
 import type { Meal } from '../types/meal'
 
 async function MealDetals({ params: { mealSlug } }) {
-  console.log('Accessing database with this mealSlug: ', mealSlug)
   const meal: Meal = await getMeal(mealSlug)
   meal.instructions = meal.instructions.replace(/\n/g, '<br>')
   return (
@@ -26,9 +25,7 @@ async function MealDetals({ params: { mealSlug } }) {
           className={classes.instructions}
           // eslint-disable-next-line react/no-danger
           dangerouslySetInnerHTML={{ __html: meal.instructions }}
-        >
-          {meal.instructions}
-        </p>
+        />
       </main>
     </>
   )

@@ -26,9 +26,7 @@
     ".next/types/**/*.ts",
     "**/*.ts",
     "**/*.tsx",
-    "initdb.js",
-    "initdb.mjs",
-    "initdb.mts"
+    "db/**/*.ts"
   ],
   "exclude": ["node_modules"]
 }
