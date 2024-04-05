@@ -12,7 +12,9 @@
     "test": "npx jest --passWithNoTests",
     "madge": "npx madge --extensions js,jsx,ts,tsx .",
     "format": "npx prettier --check .",
-    "init-db": "dotenv -e .env.development node db/init/postgres.mjs"
+    "init-db-development": "dotenv -e .env.development node db/init/postgres.mjs",
+    "init-db-local": "dotenv -e .env.local node db/init/postgres.mjs",
+    "init-db-production": "node db/init/postgres.mjs"
   },
   "dependencies": {
     "better-sqlite3": "^9.4.3",
