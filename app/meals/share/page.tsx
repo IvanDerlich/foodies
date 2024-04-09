@@ -1,7 +1,30 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */ // For some reason the lintern is still giving me an 'label-has-associated-control' error
+'use client'
+
+/* eslint-disable jsx-a11y/label-has-associated-control */
+import ImagePicker from '@/components/ImagePicker'
+import { useState } from 'react'
 import classes from './page.module.css'
+import shareMeal from './shareMeals'
 
 export default function ShareMealPage() {
+  const [pickedImage, setPickedImage] = useState(null)
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    const form = e.currentTarget
+    const formData = new FormData(form)
+
+    // // Don't delete: Display form data:
+    // const formDataObject = Object.fromEntries(formData.entries())
+    // console.log('form data:', formDataObject)
+
+    const returnValue = await shareMeal(formData)
+
+    console.log('returnValue: ', returnValue)
+
+    form.reset()
+    setPickedImage(null)
+  }
+
   return (
     <>
       <header className={classes.header}>
@@ -11,7 +34,7 @@ export default function ShareMealPage() {
         <p>Or any other meal you feel needs sharing!</p>
       </header>
       <main className={classes.main}>
-        <form className={classes.form}>
+        <form className={classes.form} onSubmit={handleSubmit}>
           <div className={classes.row}>
             <p>
               <label htmlFor="name">Your name</label>
@@ -35,11 +58,16 @@ export default function ShareMealPage() {
             <textarea
               id="instructions"
               name="instructions"
-              rows="10"
+              rows={10}
               required
             />
           </p>
-          IMAGE PICKER
+          <ImagePicker
+            label="image"
+            name="image"
+            pickedImage={pickedImage}
+            setPickedImage={setPickedImage}
+          />
           <p className={classes.actions}>
             <button type="submit">Share Meal</button>
           </p>
