@@ -5,7 +5,6 @@ export default async function shareMeal(formData) {
     setTimeout(resolve, 3000)
   })
   try {
-    console.log('formData in server: ', formData)
     const meal = {
       title: formData.get('title'),
       summary: formData.get('summary'),

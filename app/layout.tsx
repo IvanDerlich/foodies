@@ -1,6 +1,7 @@
 import MainHeader from '@/components/MainHeader'
 import { ToastContainer } from 'react-toastify'
 import './globals.css'
+import 'react-toastify/dist/ReactToastify.css'
 
 export const metadata = {
   title: 'NextLevel Food',

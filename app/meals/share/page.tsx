@@ -6,7 +6,6 @@ import { useState } from 'react'
 import { toast } from 'react-toastify'
 import shareMeal from '@/server-actions/shareMeals'
 import classes from './page.module.css'
-import 'react-toastify/dist/ReactToastify.css'
 
 export default function ShareMealPage() {
   const [pickedImage, setPickedImage] = useState(null)
