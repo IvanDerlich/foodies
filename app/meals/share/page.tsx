@@ -3,8 +3,10 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import ImagePicker from '@/components/ImagePicker'
 import { useState } from 'react'
+import { toast } from 'react-toastify'
+import shareMeal from '@/server-actions/shareMeals'
 import classes from './page.module.css'
-import shareMeal from './shareMeals'
+import 'react-toastify/dist/ReactToastify.css'
 
 export default function ShareMealPage() {
   const [pickedImage, setPickedImage] = useState(null)
@@ -16,10 +18,26 @@ export default function ShareMealPage() {
     // // Don't delete: Display form data:
     // const formDataObject = Object.fromEntries(formData.entries())
     // console.log('form data:', formDataObject)
-
+    const toastId = toast.loading('Sharing your meal...')
     const returnValue = await shareMeal(formData)
 
-    console.log('returnValue: ', returnValue)
+    if (returnValue.status === 'error') {
+      toast.update(toastId, {
+        type: 'error',
+        render: returnValue.message,
+        isLoading: false,
+        closeButton: true,
+        closeOnClick: true,
+      })
+      return
+    }
+    toast.update(toastId, {
+      type: 'success',
+      render: returnValue.message,
+      isLoading: false,
+      autoClose: 5000,
+      closeOnClick: true,
+    })
 
     form.reset()
     setPickedImage(null)
@@ -72,6 +90,7 @@ export default function ShareMealPage() {
             <button type="submit">Share Meal</button>
           </p>
         </form>
+        {/* <ToastContainer pauseOnHover draggable position="top-center" /> */}
       </main>
     </>
   )

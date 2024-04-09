@@ -1,4 +1,5 @@
 import MainHeader from '@/components/MainHeader'
+import { ToastContainer } from 'react-toastify'
 import './globals.css'
 
 export const metadata = {
@@ -12,6 +13,7 @@ export default function RootLayout({ children }) {
       <body>
         <MainHeader />
         {children}
+        <ToastContainer pauseOnHover position="top-center" />
       </body>
     </html>
   )
