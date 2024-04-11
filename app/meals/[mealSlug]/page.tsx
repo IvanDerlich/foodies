@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import { getMeal } from '@/db/actions'
 import { notFound } from 'next/navigation'
+import DOMPurify from 'dompurify'
 import classes from './page.module.css'
 import type { Meal } from '../types/meal'
 
@@ -27,8 +28,9 @@ async function MealDetals({ params: { mealSlug } }) {
       <main className="">
         <p
           className={classes.instructions}
-          // eslint-disable-next-line react/no-danger
-          dangerouslySetInnerHTML={{ __html: meal.instructions }}
+          dangerouslySetInnerHTML={{
+            __html: DOMPurify.sanitize(meal.instructions),
+          }}
         />
       </main>
     </>
