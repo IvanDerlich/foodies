@@ -1,9 +1,9 @@
 import seed from './seed.mjs'
 
-import recreateDatabase from './recreateDb.mjs'
+import recreateSchema from './recreateSchema.mjs'
 
 // Now use this function to recreate the database and then initialize it
-await recreateDatabase()
+await recreateSchema()
 
 // Seed the recently created database with some initial data
-seed()
+await seed()

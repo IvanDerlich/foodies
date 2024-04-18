@@ -1,8 +1,8 @@
-export default [
+const meals = [
   {
     title: 'Juicy Cheese Burger',
     slug: 'juicy-cheese-burger',
-    image: '/images/burger.jpg',
+    image_url: 'seed/burger-SP615lSW1d8FX3465kQw57E3aAVOZN.jpg',
     summary:
       'A mouth-watering burger with a juicy beef patty and melted cheese, served in a soft bun.',
     instructions: `
@@ -24,7 +24,7 @@ export default [
   {
     title: 'Spicy Curry',
     slug: 'spicy-curry',
-    image: '/images/curry.jpg',
+    image_url: 'seed/curry-l4LiFGtHsgnpEqVDI0sxkHKLULHZ0g.jpg',
     summary:
       'A rich and spicy curry, infused with exotic spices and creamy coconut milk.',
     instructions: `
@@ -49,7 +49,7 @@ export default [
   {
     title: 'Homemade Dumplings',
     slug: 'homemade-dumplings',
-    image: '/images/dumplings.jpg',
+    image_url: 'seed/dumplings-ESC83xOpZEDw8J6Bv2CesaZJGngEKF.jpg',
     summary:
       'Tender dumplings filled with savory meat and vegetables, steamed to perfection.',
     instructions: `
@@ -71,7 +71,7 @@ export default [
   {
     title: 'Classic Mac n Cheese',
     slug: 'classic-mac-n-cheese',
-    image: '/images/macncheese.jpg',
+    image_url: 'seed/macncheese-Q2jEK4ECfGkM6aGgdwpJ6KTxzjjjEO.jpg',
     summary:
       "Creamy and cheesy macaroni, a comforting classic that's always a crowd-pleaser.",
     instructions: `
@@ -96,7 +96,7 @@ export default [
   {
     title: 'Authentic Pizza',
     slug: 'authentic-pizza',
-    image: '/images/pizza.jpg',
+    image_url: 'seed/pizza-1mtTS4dgH6GkR38g40pYgBgxpXs70p.jpg',
     summary:
       'Hand-tossed pizza with a tangy tomato sauce, fresh toppings, and melted cheese.',
     instructions: `
@@ -118,7 +118,7 @@ export default [
   {
     title: 'Wiener Schnitzel',
     slug: 'wiener-schnitzel',
-    image: '/images/schnitzel.jpg',
+    image_url: 'seed/schnitzel-LDW9yosuVVQ3R9QwloRzftdHcR7E2e.jpg',
     summary:
       'Crispy, golden-brown breaded veal cutlet, a classic Austrian dish.',
     instructions: `
@@ -140,7 +140,7 @@ export default [
   {
     title: 'Fresh Tomato Salad',
     slug: 'fresh-tomato-salad',
-    image: '/images/tomato-salad.jpg',
+    image_url: 'seed/tomato-salad-ZwLgqTGFuhRFPztRfRotTAIlPpuNKM.jpg',
     summary:
       'A light and refreshing salad with ripe tomatoes, fresh basil, and a tangy vinaigrette.',
     instructions: `
@@ -161,4 +161,4 @@ export default [
   },
 ]
 
-// module.exports = dummyMeals
+export default meals

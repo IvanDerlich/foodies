@@ -10,7 +10,7 @@ function MealsGrid({ meals }) {
           <MealItem
             title={meal.title}
             slug={meal.slug}
-            image={meal.image}
+            imageURL={meal.image_url}
             summary={meal.summary}
             creator={meal.creator}
           />

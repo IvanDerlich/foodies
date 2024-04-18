@@ -2,25 +2,15 @@
 
 import { useEffect, useState } from 'react'
 import Image from 'next/image'
-
-import burgerImg from '@/assets/burger.jpg'
-import curryImg from '@/assets/curry.jpg'
-import dumplingsImg from '@/assets/dumplings.jpg'
-import macncheeseImg from '@/assets/macncheese.jpg'
-import pizzaImg from '@/assets/pizza.jpg'
-import schnitzelImg from '@/assets/schnitzel.jpg'
-import tomatoSaladImg from '@/assets/tomato-salad.jpg'
+import meals from '@/db/init/seedData/index.mjs'
 import classes from './slideshow.module.css'
 
-const images = [
-  { image: burgerImg, alt: 'A delicious, juicy burger' },
-  { image: curryImg, alt: 'A delicious, spicy curry' },
-  { image: dumplingsImg, alt: 'Steamed dumplings' },
-  { image: macncheeseImg, alt: 'Mac and cheese' },
-  { image: pizzaImg, alt: 'A delicious pizza' },
-  { image: schnitzelImg, alt: 'A delicious schnitzel' },
-  { image: tomatoSaladImg, alt: 'A delicious tomato salad' },
-]
+const images = meals.map((meal) => {
+  return {
+    url: `${process.env.NEXT_PUBLIC_CLOUD_STORAGE_URL}meals/${meal.image_url}`,
+    alt: meal.title,
+  }
+})
 
 export default function ImageSlideshow() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
@@ -40,9 +30,11 @@ export default function ImageSlideshow() {
       {images.map((image, index) => (
         <Image
           key={image.alt}
-          src={image.image}
+          src={image.url}
           className={index === currentImageIndex ? classes.active : ''}
           alt={image.alt}
+          width={350}
+          height={350}
         />
       ))}
     </div>

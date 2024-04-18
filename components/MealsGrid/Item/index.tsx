@@ -3,12 +3,13 @@ import Image from 'next/image'
 
 import classes from './styles.module.css'
 
-export default function MealItem({ title, slug, image, summary, creator }) {
+export default function MealItem({ title, slug, imageURL, summary, creator }) {
+  const imageURI = `${process.env.CLOUD_STORAGE_URL}meals/${imageURL}`
   return (
     <article className={classes.meal}>
       <header>
         <div className={classes.image}>
-          <Image src={image} alt={title} fill />
+          <Image src={imageURI} alt={title} fill />
         </div>
         <div className={classes.headerText}>
           <h2>{title}</h2>

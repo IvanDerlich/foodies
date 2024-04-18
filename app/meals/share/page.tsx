@@ -9,37 +9,64 @@ import classes from './page.module.css'
 
 export default function ShareMealPage() {
   const [pickedImage, setPickedImage] = useState(null)
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const toastId = toast.loading('Sharing your meal...')
+
     e.preventDefault()
     const form = e.currentTarget
     const formData = new FormData(form)
+    const reader = new FileReader()
 
-    // // Don't delete: Display form data:
-    // const formDataObject = Object.fromEntries(formData.entries())
-    // console.log('form data:', formDataObject)
-    const toastId = toast.loading('Sharing your meal...')
-    const returnValue = await shareMeal(formData)
-
-    if (returnValue.status === 'error') {
+    reader.onerror = (error) => {
       toast.update(toastId, {
         type: 'error',
-        render: returnValue.message,
+        render: `Error reading file from your device. Please try again. No data sent to the server. Error message: ${error}`,
         isLoading: false,
-        closeButton: true,
+        autoClose: 5000,
         closeOnClick: true,
       })
-      return
     }
-    toast.update(toastId, {
-      type: 'success',
-      render: returnValue.message,
-      isLoading: false,
-      autoClose: 5000,
-      closeOnClick: true,
-    })
 
-    form.reset()
-    setPickedImage(null)
+    reader.onload = async () => {
+      const imageArrayBuffer = reader.result
+
+      const blob = new Blob([new Uint8Array(imageArrayBuffer as ArrayBuffer)], {
+        type: 'image/jpeg',
+      })
+
+      formData.append('image-blob', blob)
+
+      const image = formData.get('image') as File
+      const fileName = image.name
+
+      formData.delete('image')
+      formData.append('image-name', fileName)
+
+      const serverResponse = await shareMeal(formData)
+
+      if (serverResponse.status === 'success') {
+        toast.update(toastId, {
+          type: 'success',
+          render: serverResponse.message,
+          isLoading: false,
+          autoClose: 5000,
+          closeOnClick: true,
+        })
+      } else {
+        toast.error(
+          `Sharing meal failed. Server Message: ${serverResponse.message}`
+        )
+      }
+    }
+
+    // Fetch image from your device with the pickedImage URL
+    fetch(pickedImage)
+      // convert the image to a blob
+      .then((res) => res.blob())
+
+      // read the blob as an array buffer
+      .then((blob) => reader.readAsArrayBuffer(blob))
   }
 
   return (

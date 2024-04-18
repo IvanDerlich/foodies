@@ -1,19 +1,36 @@
 'use server'
 
-export default async function shareMeal(formData) {
-  await new Promise((resolve) => {
-    setTimeout(resolve, 3000)
-  })
+import { MealUploaded } from '@/types/meal'
+import slugify from 'slugify'
+import xss from 'xss'
+import { saveMeal } from './database'
+
+type ShareMealReturnValue = {
+  status: 'success' | 'error'
+  message: string
+}
+
+export default async function shareMeal(
+  formData: FormData
+): Promise<ShareMealReturnValue> {
   try {
-    const meal = {
-      title: formData.get('title'),
-      summary: formData.get('summary'),
-      instructions: formData.get('instructions'),
-      image: formData.get('image'),
-      creator: formData.get('name'),
-      creator_email: formData.get('email'),
+    const title = formData.get('title') as string
+
+    // Sanitize and Arrange the meal data
+    const meal: MealUploaded = {
+      title,
+      summary: formData.get('summary') as string,
+      instructions: xss(formData.get('instructions') as string),
+      creator: formData.get('name') as string,
+      creator_email: formData.get('email') as string,
+      image: {
+        name: formData.get('image-name') as string,
+        blob: formData.get('image-blob') as File,
+      },
+      slug: slugify(title, { lower: true }),
     }
-    console.log('meal: ', meal)
+
+    saveMeal(meal)
     return { status: 'success', message: 'Meal shared successfully' }
   } catch (error) {
     return { status: 'error', message: 'Sharing meal failed' }

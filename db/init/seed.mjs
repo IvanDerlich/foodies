@@ -1,24 +1,27 @@
-import dummyMeals from './seedData.mjs'
+import dummyMeals from './seedData/index.mjs'
 
 import createPool from '../shared/createPool.mjs'
 
-const userPool = createPool('verceldb')
+console.log('Connecting to verceldb database to seed it.')
+const userPool = await createPool('verceldb')
 
 // SQL query to create the 'meals' table
 const createTableQuery = `
-   CREATE TABLE IF NOT EXISTS meals (
+   CREATE TABLE IF NOT EXISTS foodies.meals (
        id SERIAL PRIMARY KEY,
        slug TEXT NOT NULL UNIQUE,
        title TEXT NOT NULL,
-       image TEXT NOT NULL,
+       image_url TEXT NOT NULL,
        summary TEXT NOT NULL,
        instructions TEXT NOT NULL,
        creator TEXT NOT NULL,
        creator_email TEXT NOT NULL
    )
 `
+
 async function seed() {
   try {
+    console.log('Creating table "meals"')
     // Execute the query to create the 'meals' table
     await userPool.query(createTableQuery)
     console.log('Table "meals" has been created or already exists.')
@@ -26,10 +29,10 @@ async function seed() {
     // Insert the meals data using map to create a promise for each insert operation
     const insertPromises = dummyMeals.map((meal) => {
       const insertMealQuery = `
-        INSERT INTO meals (
+        INSERT INTO foodies.meals (
            slug,
            title,
-           image,
+           image_url,
            summary,
            instructions,
            creator,
@@ -37,32 +40,31 @@ async function seed() {
         ) VALUES ($1, $2, $3, $4, $5, $6, $7)
         ON CONFLICT (slug) DO NOTHING;
       `
-      return userPool.query(insertMealQuery, [
+
+      // console.log('Inserting meal into "meals": ', meal.slug)
+      const values = [
         meal.slug,
         meal.title,
-        meal.image,
+        meal.image_url,
         meal.summary,
         meal.instructions,
         meal.creator,
         meal.creator_email,
-      ])
+      ]
+      // console.log('insertMealQuery: ', insertMealQuery)
+      // console.log('values: ', values)
+      return userPool.query(insertMealQuery, values)
     })
 
-    // Await all insert promises using Promise.all
     await Promise.all(insertPromises)
-    console.log('All meals have been inserted successfully.')
+    console.log('Meals data has been inserted into the "meals" table.')
   } catch (error) {
     // Handle any errors that occurred during the table creation or data insertion
     console.error('Error during database seeding:', error)
     throw error // Optional: Rethrow the error if you want calling functions to handle it
   } finally {
-    // Ensure that the pool is closed regardless of whether the operation was successful or not
-    try {
-      await userPool.end()
-      console.log('Database pool has been closed.')
-    } catch (error) {
-      console.error('Error closing the database pool:', error)
-    }
+    userPool.end()
+    console.log('Pool has been closed.')
   }
 }
 
