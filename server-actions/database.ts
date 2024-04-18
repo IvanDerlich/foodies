@@ -41,7 +41,7 @@ export async function saveMeal(meal: MealUploaded) {
   const url = await saveImage(meal.image)
   const storageURLLength = process.env.NEXT_PUBLIC_CLOUD_STORAGE_URL.length
   const resourceURL = url.slice(storageURLLength + 'meals/'.length)
-  await pool.query(
+  const message = await pool.query(
     'INSERT INTO foodies.meals (title, summary, instructions, creator, creator_email, slug, image_url) VALUES ($1, $2, $3, $4, $5, $6, $7)',
     [
       meal.title,
@@ -53,8 +53,10 @@ export async function saveMeal(meal: MealUploaded) {
       resourceURL,
     ]
   )
+
   /*
     to-do: Send email to admin to check for inapropiate content
     Import sendEmailToAdmin from './vercelBlob' for this
   */
+  return message
 }
