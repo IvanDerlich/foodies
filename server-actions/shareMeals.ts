@@ -30,8 +30,18 @@ export default async function shareMeal(
       slug: slugify(title, { lower: true }),
     }
 
-    saveMeal(meal)
-    return { status: 'success', message: 'Meal shared successfully' }
+    const message = await saveMeal(meal)
+      .then(() => {
+        console.log('Meal saved successfully')
+      })
+      .catch((error) => {
+        console.error('Error saving meal', error)
+        throw error
+      })
+    return {
+      status: 'success',
+      message: `Meal shared successfully. Server message:${message}`,
+    }
   } catch (error) {
     return { status: 'error', message: 'Sharing meal failed' }
   }
