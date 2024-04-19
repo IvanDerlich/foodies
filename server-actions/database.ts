@@ -71,8 +71,15 @@ export async function saveMeal(meal: MealUploaded) {
       console.log('Testing timeout')
       // deleteImage(`${process.env.CLOUD_STORAGE_URL}meals/${resourceURL}`)
     }, 10000)
+
+    /*
+      This is because Vercel doesn't give access to the server console output
+      in production.
+      Please, comment these lines in production.
+    */
     message.imageUrl = url
     message.meal = mealFromDatabase
+    message.pool = pool
 
     return message
   } catch (error) {
