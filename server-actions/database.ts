@@ -40,8 +40,10 @@ export async function getMeal(slug) {
 export async function saveMeal(meal: MealUploaded) {
   try {
     const url = await saveImage(meal.image)
+    console.log('url:', url)
     const storageURLLength = process.env.CLOUD_STORAGE_URL.length
     const resourceURL = url.slice(storageURLLength + 'meals/'.length)
+    console.log('Trying to save meal')
     const message = await pool.query(
       'INSERT INTO foodies.meals (title, summary, instructions, creator, creator_email, slug, image_url) VALUES ($1, $2, $3, $4, $5, $6, $7)',
       [
@@ -54,6 +56,7 @@ export async function saveMeal(meal: MealUploaded) {
         resourceURL,
       ]
     )
+    console.log('meal saved. message rowcount:', message.rowCount)
     const mealFromDatabase = await getMeal(meal.slug)
 
     console.log('mealFromDatabase:', mealFromDatabase)

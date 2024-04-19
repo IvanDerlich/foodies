@@ -15,6 +15,7 @@ export default async function shareMeal(
   formData: FormData
 ): Promise<ShareMealReturnValue> {
   try {
+    // console.log('shareMeal')
     const title = formData.get('title') as string
 
     // Sanitize and Arrange the meal data
@@ -30,14 +31,33 @@ export default async function shareMeal(
       },
       slug: slugify(title, { lower: true }),
     }
-
+    // console.log('sharemeal2')
     const message = await saveMeal(meal)
-    console.log('message: ', message)
-    return {
+
+    // console.log('sharemeal3')
+
+    let stringifyMessage
+    try {
+      // console.log('message: ', message)
+      stringifyMessage = JSON.stringify({
+        rowCount: message.rowCount,
+        databaseConnectionString: message.pool.options.connectionString,
+        imageURL: message.imageURL,
+        meal: message.meal,
+      })
+    } catch (error) {
+      stringifyMessage = 'Error stringifying message'
+    }
+
+    console.log('stringifyMessage: ', stringifyMessage)
+    const serverResponse: ShareMealReturnValue = {
       status: 'success',
       message: 'Meal shared successfully',
-      messageObject: JSON.stringify(message),
+      messageObject: stringifyMessage,
     }
+    console.log('serverResponse: ', serverResponse)
+
+    return serverResponse
   } catch (error) {
     return { status: 'error', message: `Sharing meal failed. Error: ${error}` }
   }

@@ -13,8 +13,6 @@ const createPool = (database) => {
     console.error('Unexpected error client', err)
     process.exit(-1)
   })
-  pool.CONNECTION_STRING_URL = process.env.CONNECTION_STRING_URL
-  pool.CONNECTION_STRING_SETTINGS = process.env.CONNECTION_STRING_SETTINGS
   return pool
 }
 
