@@ -32,9 +32,10 @@ export default async function shareMeal(
     }
 
     const message = await saveMeal(meal)
+    console.log('message: ', message)
     return {
       status: 'success',
-      message: `Meal shared successfully.${message && 'Check message object in the console for more info'}`,
+      message: 'Meal shared successfully',
       messageObject: JSON.stringify(message),
     }
   } catch (error) {

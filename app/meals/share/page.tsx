@@ -48,6 +48,8 @@ export default function ShareMealPage() {
 
       const serverResponse = await shareMeal(formData)
 
+      console.log('Server response:', serverResponse)
+
       console.log(
         'Server response message object:',
         JSON.parse(serverResponse.messageObject)
@@ -56,7 +58,10 @@ export default function ShareMealPage() {
       if (serverResponse.status === 'success') {
         toast.update(toastId, {
           type: 'success',
-          render: serverResponse.message,
+          render:
+            serverResponse.message +
+            (serverResponse.messageObject &&
+              'Check message object in the console for more info'),
           isLoading: false,
           autoClose: 5000,
           closeOnClick: true,

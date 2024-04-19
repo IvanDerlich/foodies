@@ -54,6 +54,10 @@ export async function saveMeal(meal: MealUploaded) {
         resourceURL,
       ]
     )
+    const mealFromDatabase = await getMeal(meal.slug)
+
+    console.log('mealFromDatabase:', mealFromDatabase)
+
     if (message.rowCount === 0) {
       // deleteImage(url)
       throw new Error('Error saving meal')
@@ -68,6 +72,8 @@ export async function saveMeal(meal: MealUploaded) {
       // deleteImage(`${process.env.CLOUD_STORAGE_URL}meals/${resourceURL}`)
     }, 10000)
     message.imageUrl = url
+    message.meal = mealFromDatabase
+
     return message
   } catch (error) {
     console.error('Error saving the meal ->', error)
