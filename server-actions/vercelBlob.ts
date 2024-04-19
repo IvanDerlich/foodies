@@ -1,6 +1,6 @@
 'use server'
 
-import { put } from '@vercel/blob'
+import { put, del } from '@vercel/blob'
 import { UploadedImage } from '@/types/meal'
 
 export default async function saveImage(image: UploadedImage) {
@@ -10,8 +10,9 @@ export default async function saveImage(image: UploadedImage) {
   return url
 }
 
-export async function deleteImage() {
-  // delete image from cloud storage
+// delete image from cloud storage
+export async function deleteImage(url: string) {
+  await del(url)
 }
 
 export async function detectOrphanedImages() {

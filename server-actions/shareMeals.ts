@@ -8,6 +8,7 @@ import { saveMeal } from './database'
 type ShareMealReturnValue = {
   status: 'success' | 'error'
   message: string
+  messageObject?: string
 }
 
 export default async function shareMeal(
@@ -31,18 +32,12 @@ export default async function shareMeal(
     }
 
     const message = await saveMeal(meal)
-      .then(() => {
-        console.log('Meal saved successfully')
-      })
-      .catch((error) => {
-        console.error('Error saving meal', error)
-        throw error
-      })
     return {
       status: 'success',
-      message: `Meal shared successfully. Server message:${message}`,
+      message: `Meal shared successfully.${message && 'Check message object in the console for more info'}`,
+      messageObject: JSON.stringify(message),
     }
   } catch (error) {
-    return { status: 'error', message: 'Sharing meal failed' }
+    return { status: 'error', message: `Sharing meal failed. Error: ${error}` }
   }
 }

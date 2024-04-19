@@ -38,25 +38,39 @@ export async function getMeal(slug) {
 }
 
 export async function saveMeal(meal: MealUploaded) {
-  const url = await saveImage(meal.image)
-  const storageURLLength = process.env.NEXT_PUBLIC_CLOUD_STORAGE_URL.length
-  const resourceURL = url.slice(storageURLLength + 'meals/'.length)
-  const message = await pool.query(
-    'INSERT INTO foodies.meals (title, summary, instructions, creator, creator_email, slug, image_url) VALUES ($1, $2, $3, $4, $5, $6, $7)',
-    [
-      meal.title,
-      meal.summary,
-      meal.instructions,
-      meal.creator,
-      meal.creator_email,
-      meal.slug,
-      resourceURL,
-    ]
-  )
-
-  /*
-    to-do: Send email to admin to check for inapropiate content
-    Import sendEmailToAdmin from './vercelBlob' for this
-  */
-  return message
+  try {
+    const url = await saveImage(meal.image)
+    const storageURLLength = process.env.CLOUD_STORAGE_URL.length
+    const resourceURL = url.slice(storageURLLength + 'meals/'.length)
+    const message = await pool.query(
+      'INSERT INTO foodies.meals (title, summary, instructions, creator, creator_email, slug, image_url) VALUES ($1, $2, $3, $4, $5, $6, $7)',
+      [
+        meal.title,
+        meal.summary,
+        meal.instructions,
+        meal.creator,
+        meal.creator_email,
+        meal.slug,
+        resourceURL,
+      ]
+    )
+    if (message.rowCount === 0) {
+      // deleteImage(url)
+      throw new Error('Error saving meal')
+    }
+    /* 
+      Set an event in 10 minutes to:
+        - Delete the blob from the cloud storage
+        - Delete the meal from the database
+    */
+    setTimeout(async () => {
+      console.log('Testing timeout')
+      // deleteImage(`${process.env.CLOUD_STORAGE_URL}meals/${resourceURL}`)
+    }, 10000)
+    message.imageUrl = url
+    return message
+  } catch (error) {
+    console.error('Error saving the meal ->', error)
+    throw error
+  }
 }

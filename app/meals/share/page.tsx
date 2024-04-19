@@ -11,7 +11,10 @@ export default function ShareMealPage() {
   const [pickedImage, setPickedImage] = useState(null)
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    const toastId = toast.loading('Sharing your meal...')
+    const toastId = toast.loading('Sharing your meal...', {
+      closeOnClick: true,
+      closeButton: true,
+    })
 
     e.preventDefault()
     const form = e.currentTarget
@@ -44,6 +47,11 @@ export default function ShareMealPage() {
       formData.append('image-name', fileName)
 
       const serverResponse = await shareMeal(formData)
+
+      console.log(
+        'Server response message object:',
+        JSON.parse(serverResponse.messageObject)
+      )
 
       if (serverResponse.status === 'success') {
         toast.update(toastId, {
@@ -116,7 +124,6 @@ export default function ShareMealPage() {
             <button type="submit">Share Meal</button>
           </p>
         </form>
-        {/* <ToastContainer pauseOnHover draggable position="top-center" /> */}
       </main>
     </>
   )
