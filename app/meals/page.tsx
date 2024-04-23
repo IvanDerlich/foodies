@@ -7,6 +7,8 @@ import classes from './page.module.css'
 import type { MealDisplay } from '../../types/meal'
 
 async function Meals() {
+  'use client'
+
   const meals: MealDisplay[] = await getMeals()
   return <MealsGrid meals={meals} />
 }
