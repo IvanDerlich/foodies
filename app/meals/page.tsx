@@ -1,18 +1,8 @@
-import { getMeals } from '@/server-actions/database'
 import { Suspense } from 'react'
 import Link from 'next/link'
 
-import MealsGrid from '@/components/MealsGrid'
+import Meals from '@/components/MealsGrid'
 import classes from './page.module.css'
-import type { MealDisplay } from '../../types/meal'
-
-async function Meals() {
-  'use client'
-
-  const meals: MealDisplay[] = await getMeals()
-  console.log('meals: ', meals)
-  return <MealsGrid meals={meals} />
-}
 
 function MealsPage() {
   return (
