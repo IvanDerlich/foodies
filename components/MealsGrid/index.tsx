@@ -7,7 +7,6 @@ import classes from './styles.module.css'
 import MealItem from './Item'
 
 function MealsGrid({ meals }) {
-  console.log('meals: ', meals)
   return (
     <ul className={classes.meals}>
       {meals.map((meal) => (
@@ -30,12 +29,10 @@ function Meals() {
 
   useEffect(() => {
     getMeals().then((res) => {
-      console.log('meals received:', res)
       setMeals(res)
     })
   }, [])
 
-  console.log('meals: ', meals)
   return meals.length > 0 ? <MealsGrid meals={meals} /> : null
 }
 
