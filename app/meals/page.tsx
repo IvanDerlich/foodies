@@ -10,6 +10,7 @@ async function Meals() {
   'use client'
 
   const meals: MealDisplay[] = await getMeals()
+  console.log('meals: ', meals)
   return <MealsGrid meals={meals} />
 }
 
