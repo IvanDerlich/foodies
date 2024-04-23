@@ -2,9 +2,9 @@
 
 import React, { useEffect, useState } from 'react'
 import { getMeals } from '@/server-actions/database'
+import type { MealDisplay } from '@/types/meal'
 import classes from './styles.module.css'
 import MealItem from './Item'
-import type { MealDisplay } from '@/types/meal'
 
 function MealsGrid({ meals }) {
   console.log('meals: ', meals)
