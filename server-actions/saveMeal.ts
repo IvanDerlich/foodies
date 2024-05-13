@@ -51,7 +51,7 @@ export async function saveMeal(
     console.log('------- Responding success to the client...')
     return {
       status: 'success',
-      message: `Meal Saved successfully. It will be deleted in ${DELETION_TIMEOUT_IN_MINUTES} minutes from our persistent storage because this is a demo.`,
+      message: `Meal Saved successfully.`,
     }
   } catch (error) {
     console.log(
