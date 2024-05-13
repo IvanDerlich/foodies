@@ -4,8 +4,8 @@
 import ImagePicker from '@/components/ImagePicker'
 import { useState } from 'react'
 import { toast } from 'react-toastify'
-import shareMeal from '@/server-actions/shareMeals'
 import classes from './page.module.css'
+import { onload } from './helperMethods'
 
 export default function ShareMealPage() {
   const [pickedImage, setPickedImage] = useState(null)
@@ -31,47 +31,7 @@ export default function ShareMealPage() {
       })
     }
 
-    reader.onload = async () => {
-      const imageArrayBuffer = reader.result
-
-      const blob = new Blob([new Uint8Array(imageArrayBuffer as ArrayBuffer)], {
-        type: 'image/jpeg',
-      })
-
-      formData.append('image-blob', blob)
-
-      const image = formData.get('image') as File
-      const fileName = image.name
-
-      formData.delete('image')
-      formData.append('image-name', fileName)
-
-      const serverResponse = await shareMeal(formData)
-
-      console.log('Server response:', serverResponse)
-
-      console.log(
-        'Server response message object:',
-        JSON.parse(serverResponse.messageObject)
-      )
-
-      if (serverResponse.status === 'success') {
-        toast.update(toastId, {
-          type: 'success',
-          render:
-            serverResponse.message +
-            (serverResponse.messageObject &&
-              'Check message object in the console for more info'),
-          isLoading: false,
-          autoClose: 5000,
-          closeOnClick: true,
-        })
-      } else {
-        toast.error(
-          `Sharing meal failed. Server Message: ${serverResponse.message}`
-        )
-      }
-    }
+    reader.onload = () => onload(reader, formData, toastId)
 
     // Fetch image from your device with the pickedImage URL
     fetch(pickedImage)
