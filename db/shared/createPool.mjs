@@ -1,10 +1,13 @@
+'use server'
+
+/* eslint-disable import/prefer-default-export */
+
 import pg from 'pg'
 
 const { Pool } = pg
 
-const createPool = (database) => {
+export const createPool = (database) => {
   const connectionString = `${process.env.CONNECTION_STRING_URL}/${database}?${process.env.CONNECTION_STRING_SETTINGS}`
-  // console.log('connection string: ', connectionString)
   const pool = new Pool({
     connectionString,
   })
@@ -15,5 +18,3 @@ const createPool = (database) => {
   })
   return pool
 }
-
-export default createPool
