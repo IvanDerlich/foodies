@@ -1,8 +1,3 @@
-export type UploadedImage = {
-  name: string
-  blob: File
-}
-
 export type MealUploaded = {
   slug: string
   title: string
@@ -10,7 +5,8 @@ export type MealUploaded = {
   summary: string
   instructions: string
   creator: string
-  image: UploadedImage
+  imageFile: Blob
+  imageExtension: 'png' | 'jpg' | 'jpeg'
 }
 
 export type MealDisplay = {
@@ -21,4 +17,9 @@ export type MealDisplay = {
   instructions: string
   creator: string
   image_url: string
+}
+
+export type ShareMealReturnValue = {
+  status: 'success' | 'error'
+  message: string
 }
