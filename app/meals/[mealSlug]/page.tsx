@@ -1,11 +1,11 @@
 import Image from 'next/image'
-import { getMeal } from '@/server-actions/database'
+import { getMeal } from '@/server-actions/database/'
 import { notFound } from 'next/navigation'
 import DOMPurify from 'isomorphic-dompurify'
 import classes from './page.module.css'
 import type { MealDisplay } from '../../../types/meal'
 
-async function MealDetals({ params: { mealSlug } }) {
+async function MealDetails({ params: { mealSlug } }) {
   const meal: MealDisplay = await getMeal(mealSlug)
   if (!meal) {
     notFound()
@@ -17,7 +17,7 @@ async function MealDetals({ params: { mealSlug } }) {
         <div className={classes.image}>
           <Image
             alt={meal.title}
-            src={`${process.env.NEXT_PUBLIC_CLOUD_STORAGE_URL}meals/${meal.image_url}`}
+            src={`${process.env.NEXT_PUBLIC_STORAGE_BASE_URL}/meals/${meal.image_url}`}
             fill
           />
         </div>
@@ -41,4 +41,4 @@ async function MealDetals({ params: { mealSlug } }) {
   )
 }
 
-export default MealDetals
+export default MealDetails
