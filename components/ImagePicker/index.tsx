@@ -39,7 +39,7 @@ export default function ImagePicker({
           className={classes.input}
           type="file"
           id={name}
-          accept="image/png, image/jpeg"
+          accept="image/png, image/jpeg, image/jpg"
           name={name}
           ref={imageInputRef}
           onChange={handlePickChange}

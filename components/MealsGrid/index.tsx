@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useEffect, useState } from 'react'
-import { getMeals } from '@/server-actions/database'
+import { getMeals } from '@/server-actions/database/'
 import type { MealDisplay } from '@/types/meal'
 import classes from './styles.module.css'
 import MealItem from './Item'

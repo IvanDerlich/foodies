@@ -4,7 +4,7 @@ import Image from 'next/image'
 import classes from './styles.module.css'
 
 export default function MealItem({ title, slug, imageURL, summary, creator }) {
-  const imageURI = `${process.env.NEXT_PUBLIC_CLOUD_STORAGE_URL}meals/${imageURL}`
+  const imageURI = `${process.env.NEXT_PUBLIC_STORAGE_BASE_URL}/meals/${imageURL}`
   return (
     <article className={classes.meal}>
       <header>
