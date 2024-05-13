@@ -26,7 +26,12 @@
     ".next/types/**/*.ts",
     "**/*.ts",
     "**/*.tsx",
-    "db/**/*.ts"
+    "db/**/*.ts",
+    "db/shared/ftpBlob/deleteFileFromFTP.mjs",
+    "db/shared/ftpBlob/index.mjs",
+    "db/shared/ftpBlob/listFiles.mjs",
+    "db/shared/ftpBlob/openConnection.mjs",
+    "db/shared/ftpBlob/uploadFileToFTPFromFileSystem.mjs"
   ],
   "exclude": ["node_modules"]
 }
