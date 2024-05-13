@@ -7,7 +7,7 @@ import classes from './slideshow.module.css'
 
 const images = meals.map((meal) => {
   return {
-    url: `${process.env.NEXT_PUBLIC_CLOUD_STORAGE_URL}meals/${meal.image_url}`,
+    url: `${process.env.NEXT_PUBLIC_STORAGE_BASE_URL}/meals/${meal.image_url}`,
     alt: meal.title,
   }
 })
