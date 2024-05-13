@@ -1,14 +1,12 @@
-import createPool from '../shared/createPool.mjs'
+import { createPool } from '../shared/index.mjs'
 
-/* 
+async function recreateSchema() {
+  /* 
   Connects to the default database to be able to delete and create a new one.
   You can't delete the databa you are connected to.
 */
-
-console.log('connecting to database to be able to delete schema if exists')
-const adminPool = await createPool('verceldb')
-
-async function recreateSchema() {
+  console.log('connecting to database to be able to delete schema if exists')
+  const adminPool = await createPool('verceldb')
   let success = false
   const schemaName = 'foodies'
   try {
