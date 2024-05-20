@@ -1,0 +1,25 @@
+stages:
+  - pipeline
+
+pipeline_job:
+  stage: pipeline
+  image: node:latest
+  script:
+    - echo "Installing dependencies..."
+    - npm install
+    - echo "Running formatting..."
+    - npm run format
+    - echo "Running linting..."
+    - npm run lint
+    - echo "Checking circular dependencies. Running madge..."
+    - npm run madge
+    - echo "Running tests..."
+    - npm test
+    - echo "Building..."
+    - npm run build
+  only:
+    - merge_requests
+# cache:
+#   key: ${CI_COMMIT_REF_SLUG}
+#   paths:
+#     - node_modules/

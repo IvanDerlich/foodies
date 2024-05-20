@@ -1,10 +1,6 @@
 {
   "compilerOptions": {
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": false,
@@ -20,8 +16,8 @@
         "name": "next"
       }
     ],
-    "jsx": "preserve",    
-    "paths": {    
+    "jsx": "preserve",
+    "paths": {
       "@/*": ["./*"]
     }
   },
@@ -29,9 +25,13 @@
     "next-env.d.ts",
     ".next/types/**/*.ts",
     "**/*.ts",
-    "**/*.tsx"
+    "**/*.tsx",
+    "db/**/*.ts",
+    "db/shared/ftpBlob/deleteFileFromFTP.mjs",
+    "db/shared/ftpBlob/index.mjs",
+    "db/shared/ftpBlob/listFiles.mjs",
+    "db/shared/ftpBlob/openConnection.mjs",
+    "db/shared/ftpBlob/uploadFileToFTPFromFileSystem.mjs"
   ],
-  "exclude": [
-    "node_modules"
-  ]
+  "exclude": ["node_modules"]
 }

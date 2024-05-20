@@ -1,12 +1,5 @@
-import React from "react";
-
 function MealsLayout({ children }) {
-  return (
-    <>
-      <p>MealsLayout</p>
-      {children}
-    </>
-  );
+  return <> {children} </>
 }
 
-export default MealsLayout;
+export default MealsLayout
