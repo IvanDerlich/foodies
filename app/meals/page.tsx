@@ -2,7 +2,14 @@ import { Suspense } from 'react'
 import Link from 'next/link'
 
 import Meals from '@/components/MealsGrid'
+import type { Metadata } from 'next'
 import classes from './page.module.css'
+
+export const metadata: Metadata = {
+  title: 'All Meals',
+  description:
+    'Meals shared by a food-loving community. Created by Ivan Derlich following a tutorial by Maximillian Schwarzmüller.',
+}
 
 function MealsPage() {
   return (
