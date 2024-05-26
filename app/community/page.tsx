@@ -1,9 +1,15 @@
 import Image from 'next/image'
-
+import type { Metadata } from 'next'
 import mealIcon from '@/assets/icons/meal.png'
 import communityIcon from '@/assets/icons/community.png'
 import eventsIcon from '@/assets/icons/events.png'
 import classes from './page.module.css'
+
+export const metadata: Metadata = {
+  title: 'All Meals',
+  description:
+    'Meals shared by a food-loving community. Created by Ivan Derlich following a tutorial by Maximillian Schwarzmüller.',
+}
 
 export default function CommunityPage() {
   return (
