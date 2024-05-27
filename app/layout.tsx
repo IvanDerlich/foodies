@@ -21,7 +21,14 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     siteName: 'NextLevel Food by Ivan Derlich',
-    url: 'https://blob.ivanderlich.com/foodies/meals/seed/OMpmNFLwlBTZ020-burger.jpg',
+    images: [
+      {
+        url: 'https://blob.ivanderlich.com/foodies/meals/seed/OMpmNFLwlBTZ020-burger.jpg',
+        width: 800,
+        height: 600,
+        alt: 'A delicious burger',
+      },
+    ],
   },
   twitter: {
     creator: '@ivanderlich',
