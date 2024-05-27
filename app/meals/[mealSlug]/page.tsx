@@ -8,6 +8,14 @@ import type { MealDisplay } from '../../../types/meal'
 
 export async function generateMetadata({ params: { mealSlug } }) {
   const meal: MealDisplay = await getMeal(mealSlug)
+  const images = [
+    {
+      url: `${process.env.NEXT_PUBLIC_STORAGE_BASE_URL}/meals/${meal.image_url}`,
+      width: 800,
+      height: 600,
+      alt: meal.title,
+    },
+  ]
   if (!meal) {
     notFound()
   }
@@ -15,16 +23,17 @@ export async function generateMetadata({ params: { mealSlug } }) {
     title: `${meal.title} | NextLevel Food by Ivan Derlich`,
     description: meal.summary,
     openGraph: {
-      images: [
-        {
-          url: `${process.env.NEXT_PUBLIC_STORAGE_BASE_URL}/meals/${meal.image_url}`,
-          width: 800,
-          height: 600,
-          alt: meal.title,
-        },
-      ],
+      images,
       description: meal.summary,
       title: meal.title,
+    },
+    twitter: {
+      card: 'summary_large_image',
+      creator: '@ivanderlich',
+      site: '@ivanderlich',
+      images,
+      title: meal.title,
+      description: meal.summary,
     },
   }
   return metadata
