@@ -42,10 +42,10 @@ export const metadata: Metadata = {
     creator: '@ivanderlich',
     site: '@ivanderlich',
     card: 'summary_large_image',
-    // Try to delete fields bellow and see it it's still working. Wait for caching to expire.
-    title: info.title,
-    description: info.description,
-    images: info.images,
+    // Try to delete or uncomment fields bellow and see if it's still working. Wait for caching to expire.
+    // title: info.title,
+    // description: info.description,
+    // images: info.images,
   },
 }
 
