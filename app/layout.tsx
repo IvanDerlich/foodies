@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     siteName: 'NextLevel Food by Ivan Derlich',
-    locale: 'en_US',
+    url: 'https://blob.ivanderlich.com/foodies/meals/seed/OMpmNFLwlBTZ020-burger.jpg',
   },
   twitter: {
     creator: '@ivanderlich',
