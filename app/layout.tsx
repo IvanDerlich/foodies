@@ -4,6 +4,15 @@ import './globals.css'
 import 'react-toastify/dist/ReactToastify.css'
 import type { Metadata } from 'next'
 
+const images = [
+  {
+    url: 'https://blob.ivanderlich.com/foodies/meals/seed/OMpmNFLwlBTZ020-burger.jpg',
+    width: 800,
+    height: 600,
+    alt: 'A delicious burger',
+  },
+]
+
 export const metadata: Metadata = {
   title: {
     template: '%s | NextLevel Food by Ivan Derlich',
@@ -23,19 +32,15 @@ export const metadata: Metadata = {
     siteName: 'Food App by Ivan Derlich',
     description:
       'Deelicious meals, shared by a food-loving community. Created by Ivan Derlich following a tutorial by Maximillian Schwarzmüller.',
-    images: [
-      {
-        url: 'https://blob.ivanderlich.com/foodies/meals/seed/OMpmNFLwlBTZ020-burger.jpg',
-        width: 800,
-        height: 600,
-        alt: 'A delicious burger',
-      },
-    ],
+    images,
   },
   twitter: {
     creator: '@ivanderlich',
     site: '@ivanderlich',
     card: 'summary_large_image',
+    title: 'My Next.js App',
+    description: 'This is a description of my Next.js app.',
+    images,
   },
 }
 
