@@ -4,22 +4,26 @@ import './globals.css'
 import 'react-toastify/dist/ReactToastify.css'
 import type { Metadata } from 'next'
 
-const images = [
-  {
-    url: 'https://blob.ivanderlich.com/foodies/meals/seed/OMpmNFLwlBTZ020-burger.jpg',
-    width: 800,
-    height: 600,
-    alt: 'A delicious burger',
-  },
-]
+const info = {
+  images: [
+    {
+      url: 'https://blob.ivanderlich.com/foodies/meals/seed/OMpmNFLwlBTZ020-burger.jpg',
+      width: 800,
+      height: 600,
+      alt: 'A delicious burger',
+    },
+  ],
+  description:
+    'Delicious meals, shared by a food-oving community. Created by Ivan Derlich following a tutorial by Maximillian Schwarzmüller.',
+  title: 'NextLevel Food by Ivan Derlich',
+}
 
 export const metadata: Metadata = {
   title: {
     template: '%s | NextLevel Food by Ivan Derlich',
-    default: 'NextLevel Food by Ivan Derlich',
+    default: info.title,
   },
-  description:
-    'Delicious meals, shared by a food-loving community. Created by Ivan Derlich following a tutorial by Maximillian Schwarzmüller.',
+  description: info.description,
   authors: [
     {
       name: 'Ivan Derlich',
@@ -29,18 +33,19 @@ export const metadata: Metadata = {
   creator: 'Ivan Derlich',
   openGraph: {
     type: 'website',
-    siteName: 'Food App by Ivan Derlich',
-    description:
-      'Deelicious meals, shared by a food-loving community. Created by Ivan Derlich following a tutorial by Maximillian Schwarzmüller.',
-    images,
+    siteName: info.title,
+    description: info.description,
+    images: info.images,
+    title: info.title,
   },
   twitter: {
     creator: '@ivanderlich',
     site: '@ivanderlich',
     card: 'summary_large_image',
-    title: 'My Next.js App',
-    description: 'This is a description of my Next.js app.',
-    images,
+    // Try to delete or uncomment fields bellow and see if it's still working. Wait for caching to expire.
+    // title: info.title,
+    // description: info.description,
+    // images: info.images,
   },
 }
 
