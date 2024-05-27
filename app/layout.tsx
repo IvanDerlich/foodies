@@ -7,7 +7,7 @@ import type { Metadata } from 'next'
 export const metadata: Metadata = {
   title: {
     template: '%s | NextLevel Food by Ivan Derlich',
-    default: 'NextLevel Food by Ivan',
+    default: 'NextLevel Food by Ivan Derlich',
   },
   description:
     'Delicious meals, shared by a food-loving community. Created by Ivan Derlich following a tutorial by Maximillian Schwarzmüller.',
@@ -20,7 +20,9 @@ export const metadata: Metadata = {
   creator: 'Ivan Derlich',
   openGraph: {
     type: 'website',
-    siteName: 'NextLevel Food by Ivan Derlich',
+    siteName: 'Food App by Ivan Derlich',
+    description:
+      'Deelicious meals, shared by a food-loving community. Created by Ivan Derlich following a tutorial by Maximillian Schwarzmüller.',
     images: [
       {
         url: 'https://blob.ivanderlich.com/foodies/meals/seed/OMpmNFLwlBTZ020-burger.jpg',
