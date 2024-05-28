@@ -24,7 +24,7 @@ function MealsPage() {
           fun!
         </p>
         <p className={classes.cta}>
-          <Link href="/meals/share">Share Your Favorite Recipe</Link>
+          <Link href="/meals/pre-share">Share Your Favorite Recipe</Link>
         </p>
       </header>
       <main className={classes.main}>
