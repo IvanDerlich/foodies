@@ -7,6 +7,15 @@ import { extractImageExtension } from '@/utils/'
 import { validateTitle } from '@/utils/validateTitle'
 import { saveMeal } from '.'
 
+function isValidText(text: string): boolean {
+  return text && text.trim() !== ''
+}
+
+function validateEmail(email) {
+  const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+  return re.test(email)
+}
+
 export default async function shareMeal(
   formData: FormData
 ): Promise<ShareMealReturnValue> {
@@ -29,6 +38,23 @@ export default async function shareMeal(
       imageFile: imageBlob,
       imageExtension,
       slug: slugify(title || '', { lower: true }),
+    }
+
+    if (
+      !(
+        isValidText(meal.title) &&
+        isValidText(meal.summary) &&
+        isValidText(meal.instructions) &&
+        isValidText(meal.creator) &&
+        isValidText(meal.creator_email) &&
+        isValidText(meal.slug) &&
+        isValidText(meal.imageExtension) &&
+        meal.imageFile &&
+        meal.imageFile.size > 0 &&
+        validateEmail(meal.creator_email)
+      )
+    ) {
+      // console.log('------- One or more fields are invalid...')
     }
 
     const response = await saveMeal(meal)

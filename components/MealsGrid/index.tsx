@@ -1,6 +1,4 @@
-'use client'
-
-import React, { useEffect, useState } from 'react'
+// import { useEffect, useState } from 'react'
 import { getMeals } from '@/server-actions/database/'
 import type { MealDisplay } from '@/types/meal'
 import classes from './styles.module.css'
@@ -24,14 +22,15 @@ function MealsGrid({ meals }) {
   )
 }
 
-function Meals() {
-  const [meals, setMeals] = useState<MealDisplay[]>([])
+async function Meals() {
+  // const [meals, setMeals] = useState<MealDisplay[]>([])
+  const meals: MealDisplay[] = await getMeals()
 
-  useEffect(() => {
-    getMeals().then((res) => {
-      setMeals(res)
-    })
-  }, [])
+  // useEffect(() => {
+  //   getMeals().then((res) => {
+  //     setMeals(res)
+  //   })
+  // }, [])
 
   return meals.length > 0 ? <MealsGrid meals={meals} /> : null
 }
