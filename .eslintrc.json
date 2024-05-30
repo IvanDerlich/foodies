@@ -18,6 +18,7 @@
     "react/jsx-filename-extension": "off",
     "import/extensions": "off",
     "react/prop-types": "off",
-    "allowImportingTsExtensions": "off"
+    "allowImportingTsExtensions": "off",
+    "import/prefer-default-export": "off"
   }
 }
