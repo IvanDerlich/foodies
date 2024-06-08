@@ -2,7 +2,7 @@
 
 ## Description
 
-<p id="description-food-sharing-app"> 
+<p id="description-foodies"> 
     A simple food recipe sharing app that allows users to create, read, update and delete their own recipes and view other users' recipes
 <p>
 
