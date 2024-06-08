@@ -1,5 +1,6 @@
 .header {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
   padding: 2rem 1rem;
@@ -11,13 +12,20 @@
   }
 }
 
+@media (max-width: 628px) {
+  .nav {
+    margin-top: 40px;
+    margin-left: 40px;
+  }
+}
+
 .nav ul {
   list-style: none;
   margin: 0;
   padding: 0;
   display: flex;
+  flex-wrap: wrap;
   gap: 1.5rem;
-  /* font-family: 'Montserrat', sans-serif; */
   font-size: 1.25rem;
 }
 

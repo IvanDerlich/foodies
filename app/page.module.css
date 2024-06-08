@@ -2,13 +2,43 @@
   display: flex;
   gap: 3rem;
   margin: 3rem auto;
-  width: 90%;
-  max-width: 75rem;
+  width: 90vw;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .slideshow {
-  width: 40rem;
+  width: 40%;
   height: 25rem;
+  display: flex;
+}
+
+@media screen and (max-width: 1066px) {
+  .slideshow {
+    min-height: 500px;
+    min-width: 220px;
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 620px) {
+  .slideshow {
+    height: 25vh;
+    min-height: 0px;
+    width: 50%;
+  }
+}
+
+.header-text {
+  width: 55%;
+}
+
+@media screen and (max-width: 1066px) {
+  .header-text {
+    min-height: 500px;
+    width: 80%;
+    text-align: center;
+  }
 }
 
 .hero {
