@@ -1,5 +1,6 @@
 .header {
   display: flex;
+  flex-wrap: wrap;
   padding: 2rem 1rem;
   gap: 3rem;
   margin: auto;
@@ -32,6 +33,12 @@
   text-transform: uppercase;
   font-family: 'Montserrat', sans-serif;
   text-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.5);
+}
+
+@media screen and (max-width: 395px) {
+  .headerText h1 {
+    font-size: 2rem;
+  }
 }
 
 .creator {
@@ -69,7 +76,7 @@
   box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.5);
   padding: 2rem;
   max-width: 60rem;
-  margin: 2rem auto;
+  margin: 2rem 1rem;
   animation: fade-slide-in-from-bottom 1s ease-out forwards;
 }
 
