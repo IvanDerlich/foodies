@@ -63,7 +63,7 @@ async function MealDetails({ params: { mealSlug } }) {
           <p className={classes.summary}>{meal.summary}</p>
         </div>
       </header>
-      <main className="">
+      <main className={classes.container}>
         <p
           className={classes.instructions}
           dangerouslySetInnerHTML={{
