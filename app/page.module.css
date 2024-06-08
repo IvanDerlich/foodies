@@ -11,6 +11,8 @@
   width: 40%;
   height: 25rem;
   display: flex;
+  min-height: 400px;
+  max-width: 500px;
 }
 
 @media screen and (max-width: 1066px) {
