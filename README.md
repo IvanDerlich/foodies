@@ -23,9 +23,8 @@
 ## Technologies used
 
 <ul id="tech-list-foodies">
-  <li>Next.js</li>
+  <li>Nextjs</li>
   <li>Postgresql</li>
-  <li>better-sqlite3</li>
   <li>basic-ftp</li>
   <li>react-toastify</li>
 </ul>
