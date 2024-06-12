@@ -26,7 +26,6 @@
   <li>Nextjs</li>
   <li>Postgresql</li>
   <li>basic-ftp</li>
-  <li>react-toastify</li>
 </ul>
 
 ## [Youtube Video]()
